@@ -1,6 +1,12 @@
 # Flask API template for Kubernetes
 At Oats, we use Flask extensively. This is one of the standard templates we use internally for building our Python and Flask powered APIs running on top of Kubernetes.
 
+# When use this?
+
+- You want to use Python and Flask for building APIs
+- You want to use Postgres as a relational database
+- You want to use JWT token based API authentication 
+
 # Use this template
 
 ```
@@ -151,4 +157,3 @@ Change conf if required and restart
 nano /usr/local/var/postgres/postgresql.conf
 brew services restart postgresql
 ```
-
