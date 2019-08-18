@@ -1,11 +1,13 @@
 # Flask API template for Kubernetes
 At Oats, we use Flask extensively. This is one of the standard templates we use internally for building our Python and Flask powered APIs running on top of Kubernetes.
 
-# Clone template
+# Use this template
 
 ```
-git clone https://github.com/tryoats/flask-api-template-for-kubernetes my-project
+git clone https://github.com/abhishektiwari/flask-api-template-for-kubernetes my-project
 ```
+
+or simply [click here to use this template](https://github.com/abhishektiwari/flask-api-template-for-kubernetes/generate)
 
 
 # Setting up development environment on Mac
