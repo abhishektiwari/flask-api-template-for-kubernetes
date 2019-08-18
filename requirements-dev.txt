@@ -1,0 +1,6 @@
+-r requirements.txt
+psycopg2-binary==2.8.3
+pylint
+pylint-flask==0.6
+pylint-plugin-utils==0.5
+pylint-flask-sqlalchemy==0.1.0
