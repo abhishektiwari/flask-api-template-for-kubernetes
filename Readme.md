@@ -66,7 +66,7 @@ export FLASK_APP=entry.py
 export POSTGRES_USER=youruser
 export POSTGRES_DB_NAME=yourdbname
 export POSTGRES_PASSWORD=yourpass
-export POSTGRES_HOST=host.docker.internal
+export POSTGRES_HOST=localhost
 export FLASK_CONFIG=development
 export FLASK_ENV=development
 ```
@@ -91,6 +91,7 @@ flask seed_db
 
 # Minikube
 
+Start minikube
 ```
 make mstart
 ```
@@ -101,22 +102,48 @@ Add entry to `/etc/hosts` file:
 <MINIKUBE_IP> mymachine.com
 ```
 
-Also add following into your local `/etc/hosts` file,
+Then create Postgress and Apps,
 
 ```
-127.0.0.1 host.docker.internal
-127.0.0.1 kubernetes.docker.internal
+make postgres
+make apps
+```
+
+Generate seed for database if required
+
+```
+kubectl get pods
+kubectl exec app-XXXX flask seed_db
+```
+
+Recreate database if required
+
+```
+kubectl exec app-XXXX flask recreate_db
+```
+
+Rollout app update
+
+```
+make update
+```
+
+See logs for a pod,
+
+```
+kubectl get pods
+kubectl logs -f app-XXXX
 ```
 
 # Kubernetes
 
 ```
-
+TBA
 ```
 
 # Postgress running on host
 
-Change connecition to accept from anywhere i.e. `listen_addresses = '*'`,
+Change conf if required and restart
 
 ```
 nano /usr/local/var/postgres/postgresql.conf

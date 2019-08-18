@@ -44,8 +44,8 @@ update:
 	docker image build -t $(REPO):$(TIMESTAMP) -f Dockerfile .
 	kubectl set image -n $(NSPACE) deployment/$(REPO) *=$(REPO):$(TIMESTAMP)
 
-.PHONY: create
-create:
+.PHONY: apps
+apps:
 	@eval $$(minikube docker-env) ;\
 	docker image build -t $(REPO):v1 -f Dockerfile .
 	kubectl create -f $(DFILE)
