@@ -1,4 +1,4 @@
 env
 .dockerignore
 Dockerfile
-migrations
+venv

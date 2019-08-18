@@ -66,7 +66,7 @@ export FLASK_APP=entry.py
 export POSTGRES_USER=youruser
 export POSTGRES_DB_NAME=yourdbname
 export POSTGRES_PASSWORD=yourpass
-export POSTGRES_HOST=localhost
+export POSTGRES_HOST=host.docker.internal
 export FLASK_CONFIG=development
 export FLASK_ENV=development
 ```
@@ -95,29 +95,31 @@ flask seed_db
 make mstart
 ```
 
-Add entry to /etc/hosts file:
+Add entry to `/etc/hosts` file:
 
 ```
-<MINIKUBE_IP> hello.world
+<MINIKUBE_IP> mymachine.com
+```
+
+Also add following into your local `/etc/hosts` file,
+
+```
+127.0.0.1 host.docker.internal
+127.0.0.1 kubernetes.docker.internal
 ```
 
 # Kubernetes
 
 ```
-kubectl apply -f ./kubernetes/secret.yml
-kubectl create -f ./kubernetes/flask-deployment.yml
-kubectl create -f ./kubernetes/flask-service.yml
-kubectl get pods
-kubectl apply -f ./kubernetes/gke-ingress.yml
+
 ```
 
+# Postgress running on host
 
-# Refrence
+Change connecition to accept from anywhere i.e. `listen_addresses = '*'`,
 
-https://mherman.org/presentations/flask-kubernetes/#63
-https://testdriven.io/blog/running-flask-on-kubernetes/
-https://github.com/testdrivenio/flask-vue-kubernetes
-https://flask-migrate.readthedocs.io/en/latest/
-https://blog.miguelgrinberg.com/post/migrating-from-flask-script-to-the-new-flask-cli
-https://github.com/miguelgrinberg/flasky/blob/master/flasky.py
-https://blog.theodo.com/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/
+```
+nano /usr/local/var/postgres/postgresql.conf
+brew services restart postgresql
+```
+

@@ -1,21 +1,25 @@
-FROM python:3.6-alpine as base                                                                                                
-                                                                                                                              
-FROM base as builder                                                                                                          
-                                                                                                                              
-RUN mkdir /install                                                                                                            
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev                                                             
-WORKDIR /install                                                                                                              
-COPY requirements-prod.txt /requirements-prod.txt                                                                                     
-RUN pip install --install-option="--prefix=/install" -r /requirements-prod.txt                                                    
-                                                                                                                              
-FROM base                                                                                                                     
+FROM python:3.7-slim
 
-RUN mkdir /usr/src/app                                                                                                                
-COPY --from=builder /install /usr/src/app                                                                                   
-COPY . /usr/src/app                                                                                                   
-RUN apk --no-cache add libpq                                                                                                
+# install netcat
+RUN apt-get update && \
+    apt-get -y install netcat && \
+    apt-get clean
+
+ENV FLASK_APP entry.py
+ENV FLASK_CONFIG development
+
 WORKDIR /usr/src/app
-ENV FLASK_APP flasky.py
-RUN chmod +x /usr/src/app/entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+COPY ./requirements.txt /usr/src/app/requirements.txt
+COPY ./requirements-prod.txt /usr/src/app/requirements-prod.txt
+RUN pip install -r requirements-prod.txt
+
+
+# Copy files
+COPY . /usr/src/app/
+RUN chmod 755 entrypoint.sh
+
+
+
+# run-time configuration
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

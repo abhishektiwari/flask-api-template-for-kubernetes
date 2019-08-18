@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+source venv/bin/activate
 
 while true; do
     flask deploy
@@ -9,4 +11,5 @@ while true; do
     sleep 5
 done
 
-exec gunicorn -b :5000 --access-logfile - --error-logfile - flasky:app
+
+gunicorn -b 0.0.0.0:5000 entry:app
