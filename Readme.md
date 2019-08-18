@@ -51,11 +51,17 @@ Database browser,
 https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.11/macos/
 
 # Running you code locally
-
+Create virtualenv,
 ```
 python3 -m venv venv
+```
+
+```
 source venv/bin/activate
 pip install -r requirements-dev.txt
+```
+
+```
 export FLASK_APP=entry.py
 export POSTGRES_USER=youruser
 export POSTGRES_DB_NAME=yourdbname
@@ -74,7 +80,9 @@ flask db migrate
 flask db upgrade
 ```
 
-Dangerous commands try only in development,
+⚠️ Comment out the `migrations/` pattern on the top of `.gitignore` file
+
+⚠️ Dangerous custom commands try only in development,
 
 ```
 flask recreate_db
@@ -84,13 +92,7 @@ flask seed_db
 # Minikube
 
 ```
-cd project
-minikube addons enable ingress
-kubectl apply -f ./kubernetes/secret.yml
-kubectl create -f ./kubernetes/flask-deployment.yml
-kubectl create -f ./kubernetes/flask-service.yml
-kubectl get pods
-kubectl apply -f ./kubernetes/minikube-ingress.yml
+make mstart
 ```
 
 Add entry to /etc/hosts file:

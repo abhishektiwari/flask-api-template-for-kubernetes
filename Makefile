@@ -7,6 +7,33 @@ IFILE=kubernetes/minikube-flask-ingress.yml
 IFILE=kubernetes/minikube-flask-ingress.yml
 VERSION=v1
 
+.PHONY: mstart
+mstart:
+	minikube start --kubernetes-version v1.15.0
+	kubectx minikube
+	OUTPUT="$(minikube ip)"
+	echo "🚀 Add following your /etc/hosts:${OUTPUT} mymachine.com"
+
+.PHONY: mstatus
+mstatus:
+	kubectx
+	kubens
+	minikube status
+	minikube ip
+
+.PHONY: mstop
+mstop:
+	minikube stop
+
+.PHONY: mdashboard
+mdashboard:
+	minikube dashboard
+
+.PHONY: mclean
+mclean:
+	minikube stop
+	minikube delete
+
 .PHONY: update
 update:  
 	@eval $$(minikube docker-env) ;\
