@@ -10,7 +10,7 @@ VERSION=v1
 
 .PHONY: mstart
 mstart:
-	minikube start --kubernetes-version v1.15.0
+	minikube start --kubernetes-version v1.15.0 --disk-size='40000mb'
 	kubectx minikube
 	kubectl cluster-info
 	minikube ip

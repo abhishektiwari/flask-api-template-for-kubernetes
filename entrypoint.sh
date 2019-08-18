@@ -2,8 +2,10 @@
 
 source venv/bin/activate
 
+echo 'I am here'
 while true; do
     flask deploy
+    flask seed_db
     if [[ "$?" == "0" ]]; then
         break
     fi
