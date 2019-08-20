@@ -159,3 +159,14 @@ Change conf if required and restart
 nano /usr/local/var/postgres/postgresql.conf
 brew services restart postgresql
 ```
+
+
+Activate UUID extension,
+
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION pgcrypto
+\df
+DROP EXTENSION "uuid-ossp";
+CREATE EXTENSION "uuid-ossp";
+```
