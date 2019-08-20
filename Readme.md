@@ -164,9 +164,14 @@ brew services restart postgresql
 Activate UUID extension,
 
 ```
+psql -d yourdbname
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION pgcrypto
 \df
 DROP EXTENSION "uuid-ossp";
 CREATE EXTENSION "uuid-ossp";
+```
+
+```
+SELECT * FROM pg_available_extensions;
 ```
