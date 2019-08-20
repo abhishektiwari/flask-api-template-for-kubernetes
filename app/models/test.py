@@ -1,6 +1,7 @@
 """
 Create test model
 """
+from sqlalchemy.sql import func
 from marshmallow import ValidationError, validates_schema, post_load
 from app import db, ma
 
@@ -11,6 +12,8 @@ class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(128))
     email = db.Column(db.String(128), unique=True, index=True)
+    created_timestamp = db.Column(db.DateTime, server_default=func.now())
+    updated_timestamp = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
     def __init__(self, name, email):
         self.name = name
@@ -23,7 +26,9 @@ class Test(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'email': self.email
+            'email': self.email,
+            'created_timestamp': self.created_timestamp,
+            'updated_timestamp': self.updated_timestamp
         }
 
 class TestSchema(ma.ModelSchema):
