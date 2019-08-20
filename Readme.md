@@ -28,6 +28,7 @@ brew install kubernetes-cli
 brew cask install minikube
 brew install postgresql
 brew install kubectx
+brew install kustomize
 ```
 
 or upgrade,
@@ -38,6 +39,7 @@ brew upgrade kubernetes-cli
 brew cask upgrade minikube
 brew upgrade postgresql
 brew upgrade kubectx
+brew upgrade kustomize
 ```
 
 Start Postgresql service, create a DB for local user, and connect.
