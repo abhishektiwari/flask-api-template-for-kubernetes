@@ -1,6 +1,7 @@
 """
 Your services
 """
+import logging
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -8,7 +9,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from app.config import config
 from app.apis.options import PATH_PREFIX
-import logging
 
 db = SQLAlchemy()
 ma = Marshmallow()

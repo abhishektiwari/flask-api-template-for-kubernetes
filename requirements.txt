@@ -21,3 +21,4 @@ text-unidecode==1.2
 marshmallow==2.20.1
 flask-marshmallow==0.10.1
 marshmallow-sqlalchemy==0.17.0
+webargs==5.4.0
