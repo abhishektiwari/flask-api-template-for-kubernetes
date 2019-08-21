@@ -4,7 +4,7 @@ Create test model
 from sqlalchemy.sql import func
 from marshmallow import ValidationError, validates_schema, post_load
 from {{cookiecutter.project_slug}}.extensions import ma, db
-from {{cookiecutter.app_name}}.database import Model
+from {{cookiecutter.project_slug}}.database import Model
 
 class Test(Model):
     """Test data model"""
