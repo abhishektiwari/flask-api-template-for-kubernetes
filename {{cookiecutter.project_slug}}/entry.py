@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 """
 Entry point to service {{ cookiecutter.project_slug }}
 """
 import os
-from flask_migrate import Migrate, upgrade
-from app import create_app, db
+from flask_migrate import upgrade
+from faker import Faker
+from app import create_app
 from app.models.test import Test
+from app.database import db
 
 app = create_app(os.getenv('FLASK_ENV') or 'default') # pylint: disable-msg=C0103
-migrate = Migrate(app, db) # pylint: disable-msg=C0103
-
 
 # Run flask shell
 @app.shell_context_processor

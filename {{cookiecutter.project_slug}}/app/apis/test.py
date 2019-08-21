@@ -6,7 +6,7 @@ from flask import current_app as gapp
 from sqlalchemy.exc import IntegrityError
 from webargs.flaskparser import use_kwargs
 from app.apis.options import PATH_PREFIX, ERR_SOMETH
-from app import db
+from app.database import db
 from app.models.test import (
     Test, TestSchema
 )

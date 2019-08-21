@@ -3,7 +3,8 @@ Create test model
 """
 from sqlalchemy.sql import func
 from marshmallow import ValidationError, validates_schema, post_load
-from app import db, ma
+from app.marsh import ma
+from app.database import db
 
 class Test(db.Model):
     """Test data model"""
