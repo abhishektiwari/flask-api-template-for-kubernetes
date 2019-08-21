@@ -1,11 +1,15 @@
-REPO=app
-ING=minikube-ingress
+REPO={{ cookiecutter.project_slug }}
+ING={{ cookiecutter.project_slug }}-ingress
 TIMESTAMP=tmp-$(shell date +%s )
 NSPACE=development
 DFILE=kubernetes/dev/deployment.yml
 SFILE=kubernetes/dev/service.yml
 IFILE=kubernetes/dev/ingress.yml
 CFILE=kubernetes/dev/secret.yml
+PVFPG=kubernetes/dev/persistent-volume.yml
+PGPVC=kubernetes/dev/persistent-volume-claim.yml
+PGDPL=kubernetes/dev/postgres-deployment.yml
+PGSVC=kubernetes/dev/postgres-service.yml
 VERSION=v1
 
 .PHONY: mstart
@@ -63,13 +67,13 @@ namespace:
 .PHONY: postgres
 postgres:
 	echo "Creating the volume..."
-	kubectl apply -f ./kubernetes/dev/persistent-volume.yml
-	kubectl apply -f ./kubernetes/dev/persistent-volume-claim.yml
+	kubectl apply -f $(PVFPG)
+	kubectl apply -f $(PGPVC)
 	echo "Creating the database credentials..."
-	kubectl apply -f ./kubernetes/dev/secret.yml
+	kubectl apply -f $(CFILE)
 	echo "Creating the postgres deployment and service..."
-	kubectl create -f ./kubernetes/dev/postgres-deployment.yml
-	kubectl create -f ./kubernetes/dev/postgres-service.yml
+	kubectl create -f $(PGDPL)
+	kubectl create -f $(PGSVC)
 
 .PHONY: ingress
 ingress:

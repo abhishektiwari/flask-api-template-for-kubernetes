@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ cookiecutter.project_slug }}-ingress
+  labels:
+    app: {{ cookiecutter.project_slug }}
+  annotations:
+spec:
+  rules:
+  - host: {{ cookiecutter.dev_domain }}
+    http:
+      paths:
+      - path: /{{ cookiecutter.api_prefix }}
+        backend:
+          serviceName: {{ cookiecutter.project_slug }}
+          servicePort: 5000
