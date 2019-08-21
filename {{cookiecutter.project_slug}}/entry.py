@@ -1,12 +1,12 @@
 """
-Entry point to service {{ cookiecutter.project_slug }}
+Entry point to service {{ cookiecutter.project_name }}
 """
 import os
 from flask_migrate import upgrade
 from faker import Faker
-from app import create_app
-from app.models.test import Test
-from app.database import db
+from {{cookiecutter.project_slug}}.app import create_app
+from {{cookiecutter.project_slug}}.models.test import Test
+from {{cookiecutter.project_slug}}.database import db
 
 app = create_app(os.getenv('FLASK_ENV') or 'default') # pylint: disable-msg=C0103
 

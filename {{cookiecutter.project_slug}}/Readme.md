@@ -38,6 +38,7 @@ Create a database which will be used for
 CREATE DATABASE yourdbname;
 CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
 GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+DROP DATABASE yourdbname;
 ```
 
 # Running your app and Postgres in local host
@@ -65,13 +66,18 @@ export FLASK_CONFIG=development
 export FLASK_ENV=development
 ```
 
-After this following commands can be run app,
+After this following commands can be run from you local shell,
+
 ```
-python -m flask db init
-python -m flask db migrate
-python -m flask db upgrade
-python -m flask run
+flask db init
+flask db migrate
+flask db upgrade
+flask run
+flask shell
 ```
+
+⚠️ Or with `python -m` or `python3` prefix if there is global python conflict.
+
 
 ⚠️ Comment out the `migrations/` pattern on the top of `.gitignore` file
 

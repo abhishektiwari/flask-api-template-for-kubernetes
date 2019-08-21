@@ -4,7 +4,7 @@ Private APIs
 from flask import Blueprint
 from flask import jsonify
 from flask_jwt_extended import jwt_required
-from app.apis.options import PATH_PREFIX
+from {{cookiecutter.project_slug}}.apis.options import PATH_PREFIX
 
 private_api = Blueprint('private_api', __name__) # pylint: disable=invalid-name
 

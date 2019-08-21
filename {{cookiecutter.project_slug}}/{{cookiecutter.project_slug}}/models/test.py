@@ -3,10 +3,10 @@ Create test model
 """
 from sqlalchemy.sql import func
 from marshmallow import ValidationError, validates_schema, post_load
-from app.marsh import ma
-from app.database import db
+from {{cookiecutter.project_slug}}.extensions import ma, db
+from {{cookiecutter.app_name}}.database import Model
 
-class Test(db.Model):
+class Test(Model):
     """Test data model"""
     __tablename__ = '{{cookiecutter.table_prefix}}_test'
 

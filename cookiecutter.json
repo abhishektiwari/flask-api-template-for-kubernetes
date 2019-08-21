@@ -1,6 +1,6 @@
 {
     "project_name": "Sample API service",
-    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('.', '-')|trim() }}",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('.', '_')|replace('-', '_')|trim() }}",
     "api_prefix": "test",
     "table_prefix": "{{cookiecutter.api_prefix}}",
     "dev_domain": "mymachine.com",
