@@ -25,7 +25,7 @@ def create_app(config_name):
 
     # Setup the Flask-JWT-Extended extension and CORS
     JWTManager(app)
-    CORS(app, resources={r"/test/*": {"origins": "*"}})
+    CORS(app, resources={r"/{{ cookiecutter.api_prefix}}/*": {"origins": "*"}})
 
     # Add logger
     if config_name == 'development' or config_name == 'default':

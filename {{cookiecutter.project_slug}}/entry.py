@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 """
-Flasky
+Entry point to service {{ cookiecutter.project_slug }}
 """
 import os
 from flask_migrate import Migrate, upgrade
