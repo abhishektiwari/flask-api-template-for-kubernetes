@@ -2,7 +2,6 @@
 
 source venv/bin/activate
 
-echo 'I am here'
 while true; do
     flask deploy
     if [[ "$?" == "0" ]]; then

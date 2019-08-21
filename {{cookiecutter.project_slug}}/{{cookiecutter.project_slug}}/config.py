@@ -47,6 +47,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     """Prod specific config"""
+    DEBUG = False
     @classmethod
     def init_app(cls, app):
         Config.init_app(app)

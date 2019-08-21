@@ -4,14 +4,13 @@ Create test model
 from sqlalchemy.sql import func
 from marshmallow import ValidationError, validates_schema, post_load
 from {{cookiecutter.project_slug}}.extensions import ma, db
-from {{cookiecutter.project_slug}}.database import Model
 
-class Test(Model):
+class Test(db.Model):
     """Test data model"""
     __tablename__ = '{{cookiecutter.table_prefix}}_test'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(128))
+    name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), unique=True, index=True)
     created_timestamp = db.Column(db.DateTime, server_default=func.now())
     updated_timestamp = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())

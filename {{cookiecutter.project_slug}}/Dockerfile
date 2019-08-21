@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get clean
 
 ENV FLASK_APP entry.py
-ENV FLASK_CONFIG development
+ENV FLASK_CONFIG production
 
 WORKDIR /usr/src/app
 
