@@ -7,7 +7,7 @@ from app import db, ma
 
 class Test(db.Model):
     """Test data model"""
-    _tablename__ = 'test'
+    _tablename__ = '{{cookiecutter.table_prefix}}_test'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(128))
