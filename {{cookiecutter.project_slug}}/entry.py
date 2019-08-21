@@ -6,7 +6,7 @@ from flask_migrate import upgrade
 from faker import Faker
 from {{cookiecutter.project_slug}}.app import create_app
 from {{cookiecutter.project_slug}}.models.test import Test
-from {{cookiecutter.project_slug}}.database import db
+from {{cookiecutter.project_slug}}.extensions import db
 
 app = create_app(os.getenv('FLASK_ENV') or 'default') # pylint: disable-msg=C0103
 
