@@ -11,7 +11,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 Mako==1.1.0
 MarkupSafe==1.1.1
-marshmallow==3.0.0
+marshmallow==2.20.2
 marshmallow-sqlalchemy==0.17.0
 PyJWT==1.7.1
 python-dateutil==2.8.0

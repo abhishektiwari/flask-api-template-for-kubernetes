@@ -13,7 +13,7 @@ def index():
     """
     Index for this app
     """
-    g{{cookiecutter.project_slug}}.logger.info("Called index")
+    gapp.logger.info("Called index")
     return jsonify({'api': 'Your Services'})
 
 @public_api.route(PATH_PREFIX+'/public', methods=["GET"])

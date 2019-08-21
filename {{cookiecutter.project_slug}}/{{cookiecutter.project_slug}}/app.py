@@ -16,7 +16,7 @@ def create_app(config_name):
     # Flask app
     app = Flask(__name__) # pylint: disable=invalid-name
     from {{cookiecutter.project_slug}}.config import config
-    {{cookiecutter.project_slug}}.config.from_object(config[config_name])
+    app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
     # set up extensions
@@ -31,16 +31,16 @@ def create_app(config_name):
 
     # Add logger
     if config_name == 'development' or config_name == 'default':
-        {{cookiecutter.project_slug}}.logger.setLevel(logging.INFO) # pylint: disable=no-member
+        app.logger.setLevel(logging.INFO) # pylint: disable=no-member
     else:
-        {{cookiecutter.project_slug}}.logger.setLevel(logging.ERROR) # pylint: disable=no-member
+        app.logger.setLevel(logging.ERROR) # pylint: disable=no-member
 
     # API blueprints, imported after OS.environ
     from {{cookiecutter.project_slug}}.apis.public import public_api
-    {{cookiecutter.project_slug}}.register_blueprint(public_api)
+    app.register_blueprint(public_api)
     from {{cookiecutter.project_slug}}.apis.private import private_api
-    {{cookiecutter.project_slug}}.register_blueprint(private_api)
+    app.register_blueprint(private_api)
     from {{cookiecutter.project_slug}}.apis.test import test_api
-    {{cookiecutter.project_slug}}.register_blueprint(test_api)
+    app.register_blueprint(test_api)
 
     return app

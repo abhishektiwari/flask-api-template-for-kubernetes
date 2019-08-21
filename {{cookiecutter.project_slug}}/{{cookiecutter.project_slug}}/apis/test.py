@@ -6,7 +6,7 @@ from flask import current_app as gapp
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from webargs.flaskparser import use_kwargs
 from {{cookiecutter.project_slug}}.apis.options import PATH_PREFIX, ERR_SOMETH
-from {{cookiecutter.project_slug}}.database import db
+from {{cookiecutter.project_slug}}.extensions import db
 from {{cookiecutter.project_slug}}.models.test import (
     Test, TestSchema
 )
@@ -35,7 +35,7 @@ def get_records():
         result = TestSchema(many=True, exclude=['id']).dump(all_tests)
         return jsonify(result), 200
     except SQLAlchemyError as e: #pylint: disable=invalid-name
-        g{{cookiecutter.project_slug}}.logger.error(e)
+        gapp.logger.error(e)
         return jsonify({'msg': ERR_SOMETH}), 400
 
 @test_api.route(PATH_PREFIX+'/records', methods=["POST"])
@@ -50,5 +50,5 @@ def add_record(name, email):
         db.session.commit()
         return jsonify({'msg': 'New record created'}), 200
     except IntegrityError as e: #pylint: disable=invalid-name
-        g{{cookiecutter.project_slug}}.logger.error(e)
+        gapp.logger.error(e)
         return jsonify({'msg': 'Record already exists.'}), 400
