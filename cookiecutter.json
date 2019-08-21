@@ -1,8 +1,6 @@
 {
     "project_name": "Sample API service",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('.', '-')|trim() }}",
-    "table_name": "test",
-    "model_name": "Test",
     "api_prefix": "test",
     "dev_domain": "mymachine.com",
     "uat_domain": "uat.example.com",
