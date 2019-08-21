@@ -3,7 +3,7 @@ Test API using Test model
 """
 from flask import Blueprint, jsonify
 from flask import current_app as gapp
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from webargs.flaskparser import use_kwargs
 from app.apis.options import PATH_PREFIX, ERR_SOMETH
 from app.database import db
@@ -11,9 +11,7 @@ from app.models.test import (
     Test, TestSchema
 )
 
-test_api = Blueprint('test_api', __name__)
-
-
+test_api = Blueprint('test_api', __name__) #pylint: disable=invalid-name
 
 @test_api.errorhandler(422)
 @test_api.errorhandler(400)
@@ -35,8 +33,8 @@ def get_records():
         # Do soemthing with data
         all_tests = Test.query.all()
         result = TestSchema(many=True, exclude=['id']).dump(all_tests)
-        return jsonify(result.data), 200
-    except Exception as e:
+        return jsonify(result), 200
+    except SQLAlchemyError as e: #pylint: disable=invalid-name
         gapp.logger.error(e)
         return jsonify({'msg': ERR_SOMETH}), 400
 
@@ -51,6 +49,6 @@ def add_record(name, email):
         db.session.add(record)
         db.session.commit()
         return jsonify({'msg': 'New record created'}), 200
-    except IntegrityError as e:
+    except IntegrityError as e: #pylint: disable=invalid-name
         gapp.logger.error(e)
         return jsonify({'msg': 'Record already exists.'}), 400

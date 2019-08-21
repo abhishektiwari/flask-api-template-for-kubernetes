@@ -67,10 +67,10 @@ export FLASK_ENV=development
 
 After this following commands can be run app,
 ```
-flask db init
-flask db migrate
-flask db upgrade
-flask run
+python -m flask db init
+python -m flask db migrate
+python -m flask db upgrade
+python -m flask run
 ```
 
 ⚠️ Comment out the `migrations/` pattern on the top of `.gitignore` file

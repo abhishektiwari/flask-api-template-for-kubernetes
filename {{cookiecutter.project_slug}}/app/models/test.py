@@ -8,7 +8,7 @@ from app.database import db
 
 class Test(db.Model):
     """Test data model"""
-    _tablename__ = '{{cookiecutter.table_prefix}}_test'
+    __tablename__ = '{{cookiecutter.table_prefix}}_test'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(128))
@@ -39,7 +39,7 @@ class TestSchema(ma.ModelSchema):
         Strict for loading
         """
         model = Test
-        strict =True
+        strict = True
 
     @post_load
     def make_instance(self, data): #pylint: disable=arguments-differ

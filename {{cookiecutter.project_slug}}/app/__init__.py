@@ -16,11 +16,11 @@ def create_app(config_name):
 
     # set up extensions
     # set up extensions
-    from database import db
+    from app.database import db
     db.init_app(app)
-    from migrate import mg
+    from app.migrate import mg
     mg.init_app(app, db)
-    from marsh import ma
+    from app.marsh import ma
     ma.init_app(app)
 
     # Setup the Flask-JWT-Extended extension and CORS
