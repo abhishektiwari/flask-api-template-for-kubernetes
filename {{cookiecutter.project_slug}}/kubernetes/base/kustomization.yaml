@@ -1,0 +1,7 @@
+commonLabels:
+  app: {{ cookiecutter.project_slug }}
+
+resources:
+- deployment.yaml
+- service.yaml
+- ingress.yaml

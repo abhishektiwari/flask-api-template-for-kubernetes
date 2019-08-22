@@ -4,7 +4,7 @@
 
 First ensure you have the latest version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Docker Desktop For Mac](https://www.docker.com/products/docker-desktop), and [Homebrew](https://brew.sh/) installed.
 
-Install Python, Kubectl, Minikube, and Postgres. 
+Install Python (`3.7+`), Kubectl (`v1.14+` or `latest`), Minikube (`v1.3.1+`), Postgres(`10+`), Skaffold (`v0.36.0+`). This project uses kustomize build system has been included in kubectl since `v1.14`.
 
 ```
 brew install python
@@ -12,7 +12,7 @@ brew install kubernetes-cli
 brew cask install minikube
 brew install postgresql
 brew install kubectx
-brew install kustomize
+brew install skaffold
 ```
 
 or upgrade,
@@ -23,7 +23,7 @@ brew upgrade kubernetes-cli
 brew cask upgrade minikube
 brew upgrade postgresql
 brew upgrade kubectx
-brew upgrade kustomize
+brew upgrade skaffold
 ```
 
 Start Postgresql service, create a DB for local user, and connect.
