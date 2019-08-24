@@ -1,5 +1,5 @@
 resources:
-- ../../base
+- ../../base-app
 patchesStrategicMerge:
  - deployment.yaml
 namePrefix: staging-

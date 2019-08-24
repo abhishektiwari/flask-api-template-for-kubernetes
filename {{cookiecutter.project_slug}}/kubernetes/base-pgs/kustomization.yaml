@@ -1,0 +1,10 @@
+commonLabels:
+  name: postgres
+  service: postgres
+
+resources:
+- volume.yml
+- volume-claim.yml
+- deployment.yaml
+- service.yaml
+- secret.yml

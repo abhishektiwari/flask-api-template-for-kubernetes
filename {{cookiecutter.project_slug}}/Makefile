@@ -1,15 +1,11 @@
-REPO={{ cookiecutter.project_slug }}
+AIMG={{ cookiecutter.project_slug }}
+REPO={{ cookiecutter.docker_repo_prefix }}/{{ cookiecutter.project_slug }}
 ING={{ cookiecutter.project_slug }}-ingress
 TIMESTAMP=tmp-$(shell date +%s )
 NSPACE=development
-DFILE=kubernetes/dev/deployment.yml
-SFILE=kubernetes/dev/service.yml
-IFILE=kubernetes/dev/ingress.yml
-CFILE=kubernetes/dev/secret.yml
-PVFPG=kubernetes/dev/persistent-volume.yml
-PGPVC=kubernetes/dev/persistent-volume-claim.yml
-PGDPL=kubernetes/dev/postgres-deployment.yml
-PGSVC=kubernetes/dev/postgres-service.yml
+DAPP=kubernetes/base-app/
+DPGS=kubernetes/base-pgs/
+
 VERSION=v1
 
 .PHONY: mstart
@@ -33,7 +29,7 @@ mstatus:
 mstop:
 	minikube stop
 
-.PHONY: mdashboard
+.PHONY: mdash
 mdashboard:
 	minikube dashboard
 
@@ -42,46 +38,34 @@ mdelete:
 	minikube stop
 	minikube delete
 
-.PHONY: update
+.PHONY: dupdate
 update:  
 	@eval $$(minikube docker-env) ;\
-	docker image build -t $(REPO):$(TIMESTAMP) -f Dockerfile .
-	kubectl set image -n $(NSPACE) deployment/$(REPO) *=$(REPO):$(TIMESTAMP)
+	docker image build -t $(AIMG):$(TIMESTAMP) -f Dockerfile .
+	kubectl set image -n $(NSPACE) deployment/$(AIMG) *=$(AIMG):$(TIMESTAMP)
 
-.PHONY: apps
-apps:
+.PHONY: ddeploy
+AIMGs:
 	@eval $$(minikube docker-env) ;\
-	docker image build -t $(REPO):v1 -f Dockerfile .
-	kubectl create -f $(DFILE)
-	kubectl create -f $(SFILE)
+	docker image build -t $(AIMG):v1 -f Dockerfile .
+	kubectl apply -k $(DAPP)
 
-.PHONY: delete
+.PHONY: dname
 delete:
 	kubectl delete namespace development
 
-.PHONY: namespace
-namespace:
+.PHONY: cname
+cname:
 	kubectl create namespace development
 	kubens development
 
 .PHONY: postgres
 postgres:
-	echo "Creating the volume..."
-	kubectl apply -f $(PVFPG)
-	kubectl apply -f $(PGPVC)
-	echo "Creating the database credentials..."
-	kubectl apply -f $(CFILE)
-	echo "Creating the postgres deployment and service..."
-	kubectl create -f $(PGDPL)
-	kubectl create -f $(PGSVC)
-
-.PHONY: ingress
-ingress:
-	kubectl create -f $(IFILE)
+	kubectl apply -k $(DPGS)
 
 .PHONY: push
-push: build
-	docker tag $(REPO):$(VERSION) $(REPO):latest
+push:
+	docker tag $(REPO):$(VERSION) $(AIMG):latest
 	docker push $(REPO):$(VERSION)
 	docker push $(REPO):latest
 

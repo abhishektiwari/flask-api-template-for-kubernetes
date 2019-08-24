@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: postgres
   labels:
-    service: postgres
+    app: postgres
 spec:
   selector:
-    service: postgres
+    app: postgres
   type: ClusterIP
   ports:
   - port: 5432
