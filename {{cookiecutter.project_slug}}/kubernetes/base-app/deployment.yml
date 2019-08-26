@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ cookiecutter.project_slug }}
+  name: {{ cookiecutter.dns_slug }}
   labels:
-    app: {{ cookiecutter.project_slug }}
+    app: {{ cookiecutter.dns_slug }}
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        app: {{ cookiecutter.project_slug }}
+        app: {{ cookiecutter.dns_slug }}
     spec:
       containers:
-      - name: {{ cookiecutter.project_slug }}
-        image: '{{ cookiecutter.project_slug }}:v1'
+      - name: {{ cookiecutter.dns_slug }}
+        image: '{{ cookiecutter.dns_slug }}:v1'
         ports:
           - containerPort: 5000
         resources:

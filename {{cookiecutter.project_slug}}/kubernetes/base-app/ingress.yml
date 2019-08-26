@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ cookiecutter.project_slug }}-ingress
+  name: {{ cookiecutter.dns_slug }}-ingress
   labels:
-    app: {{ cookiecutter.project_slug }}
+    app: {{ cookiecutter.dns_slug }}
   annotations:
 spec:
   rules:
@@ -12,5 +12,5 @@ spec:
       paths:
       - path: /{{ cookiecutter.api_prefix }}
         backend:
-          serviceName: {{ cookiecutter.project_slug }}
+          serviceName: {{ cookiecutter.dns_slug }}
           servicePort: 5000

@@ -1,5 +1,5 @@
-AIMG={{ cookiecutter.project_slug }}
-REPO={{ cookiecutter.docker_repo_prefix }}/{{ cookiecutter.project_slug }}
+AIMG={{ cookiecutter.dns_slug }}
+REPO={{ cookiecutter.docker_repo_prefix }}/{{ cookiecutter.dns_slug }}
 TIMESTAMP=tmp-$(shell date +%s )
 NSPACE=development
 DAPP=kubernetes/base-app/
