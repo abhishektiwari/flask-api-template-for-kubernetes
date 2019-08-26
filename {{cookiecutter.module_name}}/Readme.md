@@ -116,6 +116,7 @@ kubectl get pods
 kubectl exec app-XXXX flask db migrate
 kubectl exec app-XXXX flask db upgrade
 kubectl exec app-XXXX flask seed_db
+kubectl exec -it postgres-XXXX -- psql --username youruser
 ```
 
 Recreate database if required
@@ -158,12 +159,13 @@ Activate UUID extension,
 ```
 psql -d yourdbname
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION pgcrypto
+CREATE EXTENSION pgcrypto;
 \df
 DROP EXTENSION "uuid-ossp";
 CREATE EXTENSION "uuid-ossp";
 ```
 
 ```
+SELECT * FROM pg_extension;
 SELECT * FROM pg_available_extensions;
 ```
