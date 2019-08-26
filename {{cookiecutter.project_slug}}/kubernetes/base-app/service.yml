@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ cookiecutter.dns_slug }}
+  name: {{ cookiecutter.dns_name }}
   labels:
-    app: {{ cookiecutter.dns_slug }}
+    app: {{ cookiecutter.dns_name }}
 spec:
   selector:
-    app: {{ cookiecutter.dns_slug }}
+    app: {{ cookiecutter.dns_name }}
   ports:
   - port: 5000
     targetPort: 5000

@@ -4,7 +4,7 @@ Public APIs
 from flask import Blueprint
 from flask import jsonify
 from flask import current_app as gapp
-from {{cookiecutter.project_slug}}.apis.options import PATH_PREFIX
+from {{cookiecutter.module_name}}.apis.options import PATH_PREFIX
 
 public_api = Blueprint('public_api', __name__) # pylint: disable=invalid-name
 

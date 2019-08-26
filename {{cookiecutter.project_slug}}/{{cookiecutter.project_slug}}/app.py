@@ -5,7 +5,7 @@ import logging
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from {{cookiecutter.project_slug}}.extensions import (
+from {{cookiecutter.module_name}}.extensions import (
     db,
     mg,
     ma
@@ -15,7 +15,7 @@ def create_app(config_name):
     """Creat app and return"""
     # Flask app
     app = Flask(__name__) # pylint: disable=invalid-name
-    from {{cookiecutter.project_slug}}.config import config
+    from {{cookiecutter.module_name}}.config import config
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
@@ -36,11 +36,11 @@ def create_app(config_name):
         app.logger.setLevel(logging.ERROR) # pylint: disable=no-member
 
     # API blueprints, imported after OS.environ
-    from {{cookiecutter.project_slug}}.apis.public import public_api
+    from {{cookiecutter.module_name}}.apis.public import public_api
     app.register_blueprint(public_api)
-    from {{cookiecutter.project_slug}}.apis.private import private_api
+    from {{cookiecutter.module_name}}.apis.private import private_api
     app.register_blueprint(private_api)
-    from {{cookiecutter.project_slug}}.apis.test import test_api
+    from {{cookiecutter.module_name}}.apis.test import test_api
     app.register_blueprint(test_api)
 
     return app

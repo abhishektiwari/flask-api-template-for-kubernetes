@@ -7,7 +7,7 @@ from flask_jwt_extended import (
     verify_jwt_in_request,
     get_jwt_claims
 )
-from {{cookiecutter.project_slug}}.apis.options import ERR_UNAUTH
+from {{cookiecutter.module_name}}.apis.options import ERR_UNAUTH
 
 def permission_required(*allowed_roles):
     """Check required JWT scope present"""

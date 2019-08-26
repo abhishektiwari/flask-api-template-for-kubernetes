@@ -5,9 +5,9 @@ from flask import Blueprint, jsonify
 from flask import current_app as gapp
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from webargs.flaskparser import use_kwargs
-from {{cookiecutter.project_slug}}.apis.options import PATH_PREFIX, ERR_SOMETH
-from {{cookiecutter.project_slug}}.extensions import db
-from {{cookiecutter.project_slug}}.models.test import (
+from {{cookiecutter.module_name}}.apis.options import PATH_PREFIX, ERR_SOMETH
+from {{cookiecutter.module_name}}.extensions import db
+from {{cookiecutter.module_name}}.models.test import (
     Test, TestSchema
 )
 

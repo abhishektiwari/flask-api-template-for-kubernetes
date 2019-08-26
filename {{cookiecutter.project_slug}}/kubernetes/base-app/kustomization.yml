@@ -1,5 +1,5 @@
 commonLabels:
-  app: {{ cookiecutter.dns_slug }}
+  app: {{ cookiecutter.dns_name }}
 
 resources:
 - deployment.yml

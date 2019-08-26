@@ -4,9 +4,9 @@ Entry point to service {{ cookiecutter.project_name }}
 import os
 from flask_migrate import upgrade
 from faker import Faker
-from {{cookiecutter.project_slug}}.app import create_app
-from {{cookiecutter.project_slug}}.models.test import Test
-from {{cookiecutter.project_slug}}.extensions import db
+from {{cookiecutter.module_name}}.app import create_app
+from {{cookiecutter.module_name}}.models.test import Test
+from {{cookiecutter.module_name}}.extensions import db
 
 app = create_app(os.getenv('FLASK_ENV') or 'default') # pylint: disable-msg=C0103
 
