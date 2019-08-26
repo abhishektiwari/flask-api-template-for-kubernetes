@@ -22,5 +22,5 @@ brew install cookiecutter
 # Use this template
 
 ```
-cookiecutter https://github.com/abhishektiwari/flask-api-template-for-kubernetes --checkout v0.1-alpha
+cookiecutter https://github.com/abhishektiwari/flask-api-template-for-kubernetes
 ```
