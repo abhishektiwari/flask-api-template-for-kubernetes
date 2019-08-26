@@ -5,6 +5,6 @@ commonLabels:
 resources:
 - volume.yml
 - volume-claim.yml
-- deployment.yaml
-- service.yaml
+- deployment.yml
+- service.yml
 - secret.yml

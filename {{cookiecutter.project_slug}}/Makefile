@@ -1,6 +1,5 @@
 AIMG={{ cookiecutter.project_slug }}
 REPO={{ cookiecutter.docker_repo_prefix }}/{{ cookiecutter.project_slug }}
-ING={{ cookiecutter.project_slug }}-ingress
 TIMESTAMP=tmp-$(shell date +%s )
 NSPACE=development
 DAPP=kubernetes/base-app/
@@ -39,28 +38,28 @@ mdelete:
 	minikube delete
 
 .PHONY: dupdate
-update:  
+dupdate:  
 	@eval $$(minikube docker-env) ;\
 	docker image build -t $(AIMG):$(TIMESTAMP) -f Dockerfile .
 	kubectl set image -n $(NSPACE) deployment/$(AIMG) *=$(AIMG):$(TIMESTAMP)
 
 .PHONY: ddeploy
-AIMGs:
+ddeploy:
 	@eval $$(minikube docker-env) ;\
 	docker image build -t $(AIMG):v1 -f Dockerfile .
 	kubectl apply -k $(DAPP)
 
-.PHONY: dname
-delete:
+.PHONY: ddspace
+ddspa:
 	kubectl delete namespace development
 
-.PHONY: cname
-cname:
+.PHONY: dcspace
+dcspace:
 	kubectl create namespace development
 	kubens development
 
-.PHONY: postgres
-postgres:
+.PHONY: dpgs
+dpgs:
 	kubectl apply -k $(DPGS)
 
 .PHONY: push
