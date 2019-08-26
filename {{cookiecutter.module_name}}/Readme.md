@@ -113,6 +113,8 @@ Generate seed for database if required
 
 ```
 kubectl get pods
+kubectl exec app-XXXX flask db migrate
+kubectl exec app-XXXX flask db upgrade
 kubectl exec app-XXXX flask seed_db
 ```
 

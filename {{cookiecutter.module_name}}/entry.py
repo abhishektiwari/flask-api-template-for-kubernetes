@@ -3,7 +3,6 @@ Entry point to service {{ cookiecutter.project_name }}
 """
 import os
 from flask_migrate import upgrade
-from faker import Faker
 from {{cookiecutter.module_name}}.app import create_app
 from {{cookiecutter.module_name}}.models.test import Test
 from {{cookiecutter.module_name}}.extensions import db
