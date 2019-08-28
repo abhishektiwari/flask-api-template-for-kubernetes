@@ -58,6 +58,10 @@ dcspace:
 	kubectl create namespace development
 	kubens development
 
+.PHONY: daclean
+daclean:
+	kubectl delete all --all
+
 .PHONY: dpgs
 dpgs:
 	kubectl apply -k $(DPGS)
